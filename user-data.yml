@@ -1,0 +1,8 @@
+#cloud-config
+packages:
+  - docker
+
+runcmd:
+  - service docker start
+  - [docker, pull, "nginx:latest"]
+  - docker run -d -p 80:80 nginx:latest
