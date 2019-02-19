@@ -63,7 +63,7 @@ resource "aws_launch_configuration" "this_lc" {
 # AUTOSCALING GROUP
 ###############################################################################
 resource "aws_autoscaling_group" "this_asg" {
-  name_prefix          = "${var.environment}-${var.autoscale_name}-asg-"
+  name_prefix          = "${aws_launch_configuration.this_lc.name}-asg-"
   launch_configuration = "${aws_launch_configuration.this_lc.name}"
   vpc_zone_identifier  = ["${aws_subnet.private.*.id}"]
   max_size             = "${var.autoscale_max_size}"
