@@ -15,7 +15,7 @@ shift;
 key=${1:-"key.pub"};
 shift;
 
-[ ! -f "${key}" ] && fatal "$key does not exist";
+[ ! -f "${key}" ] && [ "$action" != "destroy" ] && fatal "$key does not exist";
 [ -z "$image" ] && [ "$action" != "destroy" ] && [ "$action" != "show" ] && fatal "No image specified";
 
 echo "Current workspace: $workspace";
